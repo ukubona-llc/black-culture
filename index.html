@@ -1,1 +1,221 @@
-.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Black Culture: a pentad session ledger</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 6 75.9 85.6 8.2 36.4 91.8 36.4 24.1 85.6Z' fill='none' stroke='%23b5368a' stroke-width='6' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eef1ee;--panel:#fbfcfa;--ink:#16241f;--mute:#5b6b65;--line:#cfd8d2;--c1:#b9770e;--c2:#127c7c;--c3:#b5368a;--c4:#4650c4;--c5:#3d7f22;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1816;--panel:#16231f;--ink:#e6efe9;--mute:#9bb0a7;--line:#2c3f39;--c1:#e8a33a;--c2:#3cc0b8;--c3:#e46bb7;--c4:#8c94ff;--c5:#7fd058}}
+:root[data-theme="dark"]{--bg:#0e1816;--panel:#16231f;--ink:#e6efe9;--mute:#9bb0a7;--line:#2c3f39;--c1:#e8a33a;--c2:#3cc0b8;--c3:#e46bb7;--c4:#8c94ff;--c5:#7fd058}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 70px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 "IBM Plex Sans",system-ui,sans-serif}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;line-height:1.15;margin:0 0 .5em}
+h1{font-size:clamp(2rem,6vw,3.4rem)}h2{font-size:1.7rem;margin-top:0}h3{font-size:1.1rem}
+main{max-width:820px;margin:0 auto;padding:84px 20px 80px}
+section{margin:0 0 56px}
+a{color:var(--c4)}
+.logo,.theme,.waffle{position:fixed;top:calc(env(safe-area-inset-top,0px) + 12px);z-index:20}
+.logo{left:12px;width:44px;height:44px}.logo svg{width:100%;height:100%;animation:spin 24s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.logo svg{animation:none}}
+.theme{right:12px;width:44px;height:44px;border-radius:50%;border:1.5px solid var(--line);background:var(--panel);color:var(--ink);font-size:20px;cursor:pointer}
+.waffle{right:66px;width:44px;height:44px;border-radius:12px;border:1.5px solid var(--line);background:var(--panel);cursor:pointer;display:grid;grid-template-columns:repeat(3,6px);gap:4px;place-content:center}
+.waffle i{width:6px;height:6px;border-radius:50%;background:var(--ink)}
+button:focus-visible,a:focus-visible{outline:3px solid var(--c4);outline-offset:2px}
+#grid{position:fixed;top:calc(env(safe-area-inset-top,0px) + 64px);right:12px;z-index:19;width:min(340px,calc(100vw - 24px));background:var(--panel);border:1.5px solid var(--line);border-radius:16px;padding:12px;display:none;grid-template-columns:repeat(3,1fr);gap:8px}
+#grid.open{display:grid}
+#grid a{text-decoration:none;color:var(--ink);text-align:center;font-size:.8rem;line-height:1.2;padding:12px 4px;border-radius:10px;border:1px solid var(--line)}
+#grid a:hover{background:var(--bg)}
+#grid b{display:block;font-size:1.3rem;margin-bottom:4px}
+.lede{color:var(--mute);font-size:1.1rem;max-width:60ch}
+.tag{display:inline-block;font-size:.78rem;padding:1px 9px;border-radius:99px;border:1.5px solid currentColor;margin-right:6px}
+.you{color:var(--c1)}.gem{color:var(--c2)}.gpt{color:var(--c3)}.cla{color:var(--c4)}.grk{color:var(--c5)}
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);font-size:.92rem}
+th,td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{font-weight:500;color:var(--mute)}
+.wrap{overflow-x:auto}
+.fig{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px;margin:16px 0}
+.fig svg{width:100%;height:auto;display:block}
+.fig figcaption{color:var(--mute);font-size:.85rem;margin-top:6px}
+.turn{border-left:4px solid var(--line);padding:2px 0 2px 14px;margin:0 0 18px}
+.turn p{margin:.3em 0}
+.t1{border-color:var(--c1)}.t2{border-color:var(--c2)}.t3{border-color:var(--c3)}.t4{border-color:var(--c4)}.t5{border-color:var(--c5)}
+.vid{aspect-ratio:16/9;width:100%;border:0;border-radius:12px;background:#000}
+.lv{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin:16px 0}
+.lv div{border-radius:10px;padding:8px 6px;color:#fff;font-size:.8rem;text-align:center;line-height:1.3}
+@media(max-width:560px){.lv{grid-template-columns:1fr 1fr}}
+.note{color:var(--mute);font-size:.88rem}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><defs><symbol id="pg" viewBox="0 0 100 100"><path d="M50 6 75.9 85.6 8.2 36.4 91.8 36.4 24.1 85.6Z" fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/></symbol></defs></svg>
+<a class="logo" href="#top" aria-label="Top"><svg style="color:var(--c3)"><use href="#pg"/></svg></a>
+<button class="waffle" id="wf" aria-label="Open section grid" aria-expanded="false"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></button>
+<button class="theme" id="th" aria-label="Toggle light and dark">◐</button>
+<nav id="grid" aria-label="Sections">
+<a href="#frame"><b>⬠</b>Frame</a><a href="#ledger"><b>☰</b>Ledger</a><a href="#watch"><b>▶</b>Watch</a>
+<a href="#map"><b>◎</b>Pentad map</a><a href="#shows"><b>⇄</b>Two shows</a><a href="#hyp"><b>H</b>Hypotheses</a>
+<a href="#meiosis"><b>III</b>Meiosis</a><a href="#root"><b>♭</b>Rootless</a><a href="#refs"><b>§</b>References</a>
+</nav>
+<main id="top">
+<header>
+<h1>Black culture, sampled: a Budden and R&amp;B Money session</h1>
+<p class="lede">A ledger of one conversation across Gemini, Grok, ChatGPT and Claude, organized by the pentad. Hypotheses, not findings, built from slides and to be tested against the data.</p>
+<p class="note"><span class="tag you">You</span><span class="tag gem">Gemini</span><span class="tag grk">Grok</span><span class="tag gpt">ChatGPT</span><span class="tag cla">Claude</span> mark who said what. Turns are condensed, not word for word. Money figures come from Gemini and are unverified.</p>
+</header>
+
+<section id="frame">
+<h2>The frame</h2>
+<div class="lv">
+<div style="background:var(--c1)"><b>I</b> Engine<br>Music</div>
+<div style="background:var(--c2)"><b>II</b> Sample<br>Statistics</div>
+<div style="background:var(--c3)"><b>III</b> Adaptation<br>Recombination</div>
+<div style="background:var(--c4)"><b>IV</b> Regulation<br>Tension</div>
+<div style="background:var(--c5)"><b>V</b> Survivors<br>Technology</div>
+</div>
+<div class="wrap"><table>
+<tr><th>Level</th><th>Terms</th><th>Podcast reading</th></tr>
+<tr><td style="color:var(--c1)">I Engine</td><td>Harmonic series, data, experiential, prelingual, utterance</td><td>The raw event or feeling before anyone talks about it</td></tr>
+<tr><td style="color:var(--c2)">II Sample</td><td>12TET, circle of fifths, language, next-token, prediction, error</td><td>The topic, headline or clip: experience cut into shareable units</td></tr>
+<tr><td style="color:var(--c3)">III Adaptation</td><td>Insertions, deletions, translocations, permutations, combinations</td><td>Arguing, roasting, reordering: the show's recombination</td></tr>
+<tr><td style="color:var(--c4)">IV Regulation</td><td>Consonance, dissonance, tension, extension, alteration, rootless voicings</td><td>What counts as resolved, suspended or broken</td></tr>
+<tr><td style="color:var(--c5)">V Survival</td><td>Graveyard, survivors, culture (stank-face), memory, institutions → I′ → II′</td><td>The clip, the archive, the platform; feeds the next Engine</td></tr>
+</table></div>
+</section>
+
+<section id="ledger">
+<h2>Session ledger</h2>
+<div class="turn t1"><span class="tag you">You</span><p>Is Joe Budden really one of the most highly paid podcasters? You are 46, raised on 80s and 90s hip-hop and R&amp;B, and found him unlikeable and chaotic. Why is he a big deal?</p></div>
+<div class="turn t2"><span class="tag gem">Gemini</span><p>Cited Forbes 2026 (No. 15, about $20M), roughly 70,000 Patreon subscribers, an independent business after leaving Spotify exclusivity, and the "Howard Stern of hip-hop" label. <em>Unverified here.</em></p></div>
+<div class="turn t1"><span class="tag you">You</span><p>Barbershop vibes with a rotating cast. You find him unlikeable, like Trump, and you may sit at a coordinate the data does not sample. R&amp;B Money is the true authority in R&amp;B. Then pasted levels I to IV.</p></div>
+<div class="turn t2"><span class="tag gem">Gemini</span><p>Mapped R&amp;B to the experiential engine and hip-hop commentary to sample, adaptation and prediction.</p></div>
+<div class="turn t1"><span class="tag you">You</span><p>Restored level V and the line: hypotheses, not findings. Then: the hip-hop podcast samples the zeitgeist; R&amp;B Money does "exactly 0%" of that and follows path dependency from the artist before.</p></div>
+<div class="turn t2"><span class="tag gem">Gemini</span><p>Called V recursive (V → I′), put Budden in the II–III–V corridor and R&amp;B Money in I–IV with strong V memory.</p></div>
+<div class="turn t5"><span class="tag grk">Grok</span><p>Said the framework "diagnoses a structural phase transition." Put the new engine in discourse: I′ is the event, II′ the 15-second clip, IV′ is engagement versus cancellation.</p></div>
+<div class="turn t3"><span class="tag gpt">ChatGPT</span><p>Kept the caveat. Defined the Anthropocene Engine as earlier cultural products becoming inputs to later production. Softened "0%" to a claim about what dominates organizing logic. Proposed H1 to H3.</p></div>
+<div class="turn t4"><span class="tag cla">Claude</span><p>Preferred the ChatGPT reply, flagged Gemini's drift into confirmation, noted Patreon revenue is direct payment rather than algorithmic reach, and said the framework may explain too much.</p></div>
+<div class="turn t1"><span class="tag you">You</span><p>Replied that "explains everything" criticism works against all efforts, and that you are doing III on purpose.</p></div>
+<div class="turn t4"><span class="tag cla">Claude</span><p>Conceded. Meiosis over-produces on purpose; selection is V. Offered a crossover: a rootless voicing implies the root, as barbershop reactions imply the topic. <span class="tag you">You</span> found it viable.</p></div>
+</section>
+
+<section id="watch">
+<h2>Watch</h2>
+<p class="note">The two shows, side by side. If an embed does not load, open it on YouTube.</p>
+<h3>Video one</h3>
+<iframe class="vid" src="https://www.youtube.com/embed/doj_Y4lMmU0" title="Video one" loading="lazy" allowfullscreen></iframe>
+<p class="note"><a href="https://www.youtube.com/watch?v=doj_Y4lMmU0">Open on YouTube</a></p>
+<h3>Video two</h3>
+<iframe class="vid" src="https://www.youtube.com/embed/FMS3-gfhWRU" title="Video two" loading="lazy" allowfullscreen></iframe>
+<p class="note"><a href="https://www.youtube.com/watch?v=FMS3-gfhWRU">Open on YouTube</a></p>
+</section>
+
+<section id="map">
+<h2>Pentad map</h2>
+<figure class="fig">
+<svg viewBox="0 0 400 330" role="img" aria-label="Five levels on a pentagon, with V looping to I prime">
+<g stroke="var(--line)" stroke-width="2" fill="none"><path d="M200 40 335 138 283 290 117 290 65 138Z"/></g>
+<g stroke="var(--mute)" stroke-width="1.5" fill="none"><path d="M200 40 283 290 65 138 335 138 117 290Z" stroke-dasharray="4 4"/></g>
+<g font-size="13" text-anchor="middle" fill="#fff">
+<circle cx="200" cy="40" r="26" fill="var(--c1)"/><text x="200" y="45">I</text>
+<circle cx="335" cy="138" r="26" fill="var(--c2)"/><text x="335" y="143">II</text>
+<circle cx="283" cy="290" r="26" fill="var(--c3)"/><text x="283" y="295">III</text>
+<circle cx="117" cy="290" r="26" fill="var(--c4)"/><text x="117" y="295">IV</text>
+<circle cx="65" cy="138" r="26" fill="var(--c5)"/><text x="65" y="143">V</text></g>
+<g font-size="11" fill="var(--mute)" text-anchor="middle"><text x="200" y="82">Engine</text><text x="335" y="104">Sample</text><text x="283" y="258">Adaptation</text><text x="117" y="258">Regulation</text><text x="65" y="104">Survivors</text></g>
+<text x="200" y="175" text-anchor="middle" font-size="12" fill="var(--ink)">V → I′ → II′ …</text>
+</svg>
+<figcaption>Solid edge: the sequence. Dashed pentagram: the diagonal links between every non-adjacent level. Nothing circumscribed.</figcaption>
+</figure>
+<figure class="fig">
+<svg viewBox="0 0 400 140" role="img" aria-label="Spiral from I through V to I prime, offset upward">
+<g fill="none" stroke-width="3"><path d="M20 110 H80" stroke="var(--c1)"/><path d="M90 110 H150" stroke="var(--c2)"/><path d="M160 110 H220" stroke="var(--c3)"/><path d="M230 110 H290" stroke="var(--c4)"/><path d="M300 110 H380" stroke="var(--c5)"/>
+<path d="M340 110 Q340 60 300 55" stroke="var(--mute)" stroke-dasharray="4 4"/></g>
+<g font-size="12" fill="var(--ink)"><text x="40" y="130">I</text><text x="110" y="130">II</text><text x="180" y="130">III</text><text x="250" y="130">IV</text><text x="335" y="130">V</text><text x="40" y="45">I′ (technological engine)</text></g>
+<path d="M40 52 V90" stroke="var(--c1)" stroke-width="2" stroke-dasharray="3 3"/>
+</svg>
+<figcaption>V does not end the loop. What survives becomes the environment that generates I′.</figcaption>
+</figure>
+</section>
+
+<section id="shows">
+<h2>Two shows on five levels</h2>
+<div class="wrap"><table>
+<tr><th>Level</th><th>Budden hypothesis</th><th>R&amp;B Money hypothesis</th></tr>
+<tr><td style="color:var(--c1)">I</td><td>Current events and feuds as raw event</td><td>The artist's voice and records</td></tr>
+<tr><td style="color:var(--c2)">II</td><td>Headlines and clips as samples</td><td>Career milestones as samples</td></tr>
+<tr><td style="color:var(--c3)">III</td><td>Heavy: argument, roast, digression</td><td>Light: oral history in order</td></tr>
+<tr><td style="color:var(--c4)">IV</td><td>Engagement and cancellation as tension and release</td><td>Harmonic and vocal craft decisions</td></tr>
+<tr><td style="color:var(--c5)">V</td><td>Clip, Patreon, platform memory</td><td>Archive, lineage, institutional memory</td></tr>
+</table></div>
+<figure class="fig">
+<svg viewBox="0 0 400 130" role="img" aria-label="Where each show is hypothesized to concentrate">
+<g font-size="12" fill="var(--ink)"><text x="4" y="40">Budden</text><text x="4" y="100">R&amp;B Money</text></g>
+<g><rect x="90" y="22" width="60" height="26" rx="5" fill="var(--c2)"/><rect x="156" y="22" width="60" height="26" rx="5" fill="var(--c3)"/><rect x="288" y="22" width="60" height="26" rx="5" fill="var(--c5)"/>
+<rect x="90" y="82" width="60" height="26" rx="5" fill="var(--c1)"/><rect x="222" y="82" width="60" height="26" rx="5" fill="var(--c4)"/><rect x="288" y="82" width="60" height="26" rx="5" fill="var(--c5)" opacity=".55"/></g>
+<g font-size="11" fill="#fff" text-anchor="middle"><text x="120" y="39">II</text><text x="186" y="39">III</text><text x="318" y="39">V</text><text x="120" y="99">I</text><text x="252" y="99">IV</text><text x="318" y="99">V</text></g>
+</svg>
+<figcaption>Hypothesized concentration, not measured. Both shows touch every level.</figcaption>
+</figure>
+</section>
+
+<section id="hyp">
+<h2>Hypotheses to carry forward</h2>
+<div class="wrap"><table>
+<tr><th>#</th><th>Claim</th><th>Source</th><th>Test</th></tr>
+<tr><td>H1</td><td>Institutions sample different aspects of their engine, so lineage-led and zeitgeist-led shows produce different knowledge</td><td class="gpt">ChatGPT</td><td>Code episodes: current disputes versus career and craft</td></tr>
+<tr><td>H2</td><td>When selection metrics feed production, the system changes what it samples</td><td class="gpt">ChatGPT</td><td>Compare topic mix before and after metrics shifts; Patreon vs reach</td></tr>
+<tr><td>H3</td><td>What survives platforms may not represent the underlying range of lived experience</td><td class="gpt">ChatGPT</td><td>Compare audience demographics to the wider listening population</td></tr>
+<tr><td>H4</td><td>Barbershop talk works like a rootless voicing: the topic is implied by reactions</td><td class="cla">Claude</td><td>Count episodes where the root topic is never stated outright</td></tr>
+</table></div>
+</section>
+
+<section id="meiosis">
+<h2>Why this session is III</h2>
+<figure class="fig">
+<svg viewBox="0 0 400 120" role="img" aria-label="Many gametes made, few selected">
+<g fill="var(--c3)"><circle cx="40" cy="30" r="9"/><circle cx="40" cy="60" r="9"/><circle cx="40" cy="90" r="9"/><circle cx="80" cy="45" r="9"/><circle cx="80" cy="75" r="9"/><circle cx="120" cy="60" r="9"/></g>
+<path d="M150 60 H235" stroke="var(--mute)" stroke-width="2"/><path d="M228 54 235 60 228 66" stroke="var(--mute)" stroke-width="2" fill="none"/>
+<text x="192" y="50" font-size="11" fill="var(--mute)" text-anchor="middle">selection (V)</text>
+<circle cx="290" cy="60" r="10" fill="var(--c5)"/><circle cx="330" cy="40" r="10" fill="var(--c5)"/>
+<g stroke="var(--mute)" stroke-width="2"><path d="M280 90 300 110M300 90 280 110M320 90 340 110M340 90 320 110"/></g>
+</svg>
+<figcaption>Recombination over-produces candidates. Falsification belongs at V, after generation.</figcaption>
+</figure>
+<p>Criticizing a framework for flexibility while it is still being generated is a category error: a V filter applied to a III operation. The discipline that stays: do not claim a candidate was confirmed.</p>
+</section>
+
+<section id="root">
+<h2>Crossover: the rootless podcast</h2>
+<div class="wrap"><table>
+<tr><th>Piano</th><th>Barbershop</th></tr>
+<tr><td>The root is left out; the ear supplies it from the other chord tones</td><td>The topic is rarely stated; the audience infers it from interruptions and reactions</td></tr>
+<tr><td>A new listener hears an unresolved cluster</td><td>A new viewer hears noise</td></tr>
+<tr><td>Extension and alteration add color above the root</td><td>Digression and side stories add color above the topic</td></tr>
+</table></div>
+<p class="note">Status: viable, per you. Unanswered: what is the show's equivalent of an alteration?</p>
+</section>
+
+<section id="refs">
+<h2>References</h2>
+<ul>
+<li><a href="https://ukubona-llc.github.io/trial/">Ukubona trial</a></li>
+<li><a href="https://ukubona-llc.github.io/surgery/">Ukubona surgery</a>, a mature version of the thinking, and itself referenced in trial</li>
+<li><a href="https://www.youtube.com/watch?v=doj_Y4lMmU0">Video one</a> and <a href="https://www.youtube.com/watch?v=FMS3-gfhWRU">video two</a></li>
+</ul>
+<p class="note">Forbes, Patreon and co-host details were relayed by Gemini and have not been checked.</p>
+</section>
+</main>
+<script>
+var r=document.documentElement,g=document.getElementById('grid'),w=document.getElementById('wf');
+document.getElementById('th').onclick=function(){var d=(r.dataset.theme||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'))==='dark';r.dataset.theme=d?'light':'dark'};
+w.onclick=function(){var o=g.classList.toggle('open');w.setAttribute('aria-expanded',o)};
+g.onclick=function(e){if(e.target.closest('a'))g.classList.remove('open');w.setAttribute('aria-expanded',false)};
+</script>
+</body>
+</html>
