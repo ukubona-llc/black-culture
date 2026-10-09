@@ -12,27 +12,29 @@
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1816;--panel:#16231f;--ink:#e6efe9;--mute:#9bb0a7;--line:#2c3f39;--c1:#e8a33a;--c2:#3cc0b8;--c3:#e46bb7;--c4:#8c94ff;--c5:#7fd058}}
 :root[data-theme="dark"]{--bg:#0e1816;--panel:#16231f;--ink:#e6efe9;--mute:#9bb0a7;--line:#2c3f39;--c1:#e8a33a;--c2:#3cc0b8;--c3:#e46bb7;--c4:#8c94ff;--c5:#7fd058}
-html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 70px)}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 84px)}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 "IBM Plex Sans",system-ui,sans-serif}
 h1,h2,h3{font-family:Fraunces,Georgia,serif;line-height:1.15;margin:0 0 .5em}
 h1{font-size:clamp(2rem,6vw,3.4rem)}h2{font-size:1.7rem;margin-top:0}h3{font-size:1.1rem}
-main{max-width:820px;margin:0 auto;padding:84px 20px 80px}
+main{max-width:820px;margin:0 auto;padding:96px 20px 80px}
 section{margin:0 0 56px}
 a{color:var(--c4)}
-.logo,.theme,.waffle{position:fixed;top:calc(env(safe-area-inset-top,0px) + 12px);z-index:20}
-.logo{left:12px;width:44px;height:44px}.logo svg{width:100%;height:100%;animation:spin 24s linear infinite}
+.bar .in{max-width:820px;margin:0 auto;padding:0 20px;height:68px;display:flex;align-items:center;justify-content:space-between}
+.r{display:flex;gap:10px;align-items:center}
+.logo{display:block;width:44px;height:44px}.logo svg{width:100%;height:100%;animation:spin 24s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 @media(prefers-reduced-motion:reduce){.logo svg{animation:none}}
-.theme{right:12px;width:44px;height:44px;border-radius:50%;border:1.5px solid var(--line);background:var(--panel);color:var(--ink);font-size:20px;cursor:pointer}
-.waffle{right:66px;width:44px;height:44px;border-radius:12px;border:1.5px solid var(--line);background:var(--panel);cursor:pointer;display:grid;grid-template-columns:repeat(3,6px);gap:4px;place-content:center}
+.theme{width:44px;height:44px;border-radius:50%;border:1.5px solid var(--line);background:var(--panel);color:var(--ink);font-size:20px;cursor:pointer}
+.waffle{width:44px;height:44px;border-radius:12px;border:1.5px solid var(--line);background:var(--panel);cursor:pointer;display:grid;grid-template-columns:repeat(3,6px);gap:4px;place-content:center}
 .waffle i{width:6px;height:6px;border-radius:50%;background:var(--ink)}
 button:focus-visible,a:focus-visible{outline:3px solid var(--c4);outline-offset:2px}
-#grid{position:fixed;top:calc(env(safe-area-inset-top,0px) + 64px);right:12px;z-index:19;width:min(340px,calc(100vw - 24px));background:var(--panel);border:1.5px solid var(--line);border-radius:16px;padding:12px;display:none;grid-template-columns:repeat(3,1fr);gap:8px}
+#grid{position:fixed;top:calc(env(safe-area-inset-top,0px) + 74px);right:max(12px,calc((100vw - 820px)/2 + 20px));z-index:19;width:min(340px,calc(100vw - 24px));background:var(--panel);border:1.5px solid var(--line);border-radius:16px;padding:12px;display:none;grid-template-columns:repeat(3,1fr);gap:8px}
 #grid.open{display:grid}
 #grid a{text-decoration:none;color:var(--ink);text-align:center;font-size:.8rem;line-height:1.2;padding:12px 4px;border-radius:10px;border:1px solid var(--line)}
 #grid a:hover{background:var(--bg)}
 #grid b{display:block;font-size:1.3rem;margin-bottom:4px}
+.bar{position:fixed;top:0;left:0;right:0;padding-top:env(safe-area-inset-top,0px);background:var(--bg);border-bottom:1px solid var(--line);z-index:18}
 .lede{color:var(--mute);font-size:1.1rem;max-width:60ch}
 .tag{display:inline-block;font-size:.78rem;padding:1px 9px;border-radius:99px;border:1.5px solid currentColor;margin-right:6px}
 .you{color:var(--c1)}.gem{color:var(--c2)}.gpt{color:var(--c3)}.cla{color:var(--c4)}.grk{color:var(--c5)}
@@ -55,9 +57,7 @@ th{font-weight:500;color:var(--mute)}
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute"><defs><symbol id="pg" viewBox="0 0 100 100"><path d="M50 6 75.9 85.6 8.2 36.4 91.8 36.4 24.1 85.6Z" fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/></symbol></defs></svg>
-<a class="logo" href="#top" aria-label="Top"><svg style="color:var(--c3)"><use href="#pg"/></svg></a>
-<button class="waffle" id="wf" aria-label="Open section grid" aria-expanded="false"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></button>
-<button class="theme" id="th" aria-label="Toggle light and dark">◐</button>
+<div class="bar"><div class="in"><a class="logo" href="#top" aria-label="Top"><svg style="color:var(--c3)"><use href="#pg"/></svg></a><span class="r"><button class="waffle" id="wf" aria-label="Open section grid" aria-expanded="false"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></button><button class="theme" id="th" aria-label="Toggle light and dark">◐</button></span></div></div>
 <nav id="grid" aria-label="Sections">
 <a href="#frame"><b>⬠</b>Frame</a><a href="#ledger"><b>☰</b>Ledger</a><a href="#watch"><b>▶</b>Watch</a>
 <a href="#map"><b>◎</b>Pentad map</a><a href="#shows"><b>⇄</b>Two shows</a><a href="#hyp"><b>H</b>Hypotheses</a>
